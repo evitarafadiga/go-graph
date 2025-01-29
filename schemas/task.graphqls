@@ -1,0 +1,21 @@
+type Task {
+    id: ID!
+    name: String!
+    deleted: Boolean!
+}
+
+extend type Query {
+    task(id: ID!): Task!
+    tasks: [Task!]!
+}
+
+extend type Mutation {
+    createTask(task: TaskInput!): Task!
+    updateTask(id: ID!, task: TaskInput): Task!
+    deleteTask(id: ID!): Boolean!
+}
+
+input TaskInput {
+    name: String!
+    deleted: Boolean!
+}
