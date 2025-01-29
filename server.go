@@ -10,6 +10,7 @@ import (
 	"github.com/99designs/gqlgen/graphql/handler/lru"
 	"github.com/99designs/gqlgen/graphql/handler/transport"
 	"github.com/99designs/gqlgen/graphql/playground"
+	"github.com/evitarafadiga/go-graph/config"
 	"github.com/evitarafadiga/go-graph/generated"
 	"github.com/evitarafadiga/go-graph/resolvers"
 	"github.com/go-chi/chi"
@@ -17,12 +18,12 @@ import (
 	"github.com/vektah/gqlparser/v2/ast"
 )
 
-const defaultPort = "8084"
-
 func main() {
-	port := os.Getenv("PORT")
+
+	env := config.GetEnv()
+	port := env.Port
 	if port == "" {
-		port = defaultPort
+		port = config.DEFAULT_PORT
 	}
 
 	var router *chi.Mux = chi.NewRouter()
