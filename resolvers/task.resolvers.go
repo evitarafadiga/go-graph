@@ -10,6 +10,7 @@ import (
 
 	"github.com/evitarafadiga/go-graph/generated"
 	"github.com/evitarafadiga/go-graph/model"
+	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
@@ -52,7 +53,25 @@ func (r *queryResolver) Task(ctx context.Context, id string) (*model.Task, error
 
 // Tasks is the resolver for the tasks field.
 func (r *queryResolver) Tasks(ctx context.Context) ([]*model.Task, error) {
-	panic(fmt.Errorf("not implemented: Tasks - tasks"))
+	collection := r.DB.Collection(collectionName)
+
+	cursor, err := collection.Find(ctx, bson.M{})
+	if err != nil {
+		return nil, err
+	}
+	defer cursor.Close(ctx)
+
+	var tasks []*model.Task
+	for cursor.Next(ctx){
+		var task model.Task
+		err := cursor.Decode(&task)
+		if err != nil {
+			return nil, err
+		}
+		tasks = append(tasks, &task)
+	}
+
+	return tasks, nil
 }
 
 // Mutation returns generated.MutationResolver implementation.
