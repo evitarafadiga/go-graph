@@ -8,8 +8,8 @@ DB_URL = localhost:5432
 
 PORT = 8080
 
-build:
-	@echo "==>⬇️ (1/4) Downloading GO..."
+goinstall:
+	@echo "==>⬇️ (1/2) Downloading GO..."
 	@yum update
 	@yum upgrade
 	@wget https://go.dev/dl/go1.23.5.linux-amd64.tar.gz
@@ -19,10 +19,11 @@ build:
 	@export GOROOT=/usr/local/go
 	@export GOPATH=$$HOME/Apps/go-graph
 	@export PATH=$$GOPATH/bin:$$GOROOT/bin:$$PATH
-	@echo "==>⬇️ (2/4) GO installed."
-	@echo "==>🔨 (3/4) Building server..."
+	@echo "==>⬇️ (2/2) GO installed."
+build: goinstall
+	@echo "==>🔨 (1/2) Building server..."
 	@$(GO) build -o $(PROJECT_DIR)/bin/server $(PROJECT_DIR)/server.go
-	@echo "==> (4/4) Success! Built into: $(PROJECT_DIR)/bin/server"
+	@echo "==> (2/2) Success! Built into: $(PROJECT_DIR)/bin/server"
 run: build
 	@echo "==>🏃‍♂️‍➡️ (1/1) Running server..."
 	@DB_NAME=$(DB_NAME) DB_URL=$(DB_URL) PORT=$(PORT) $(PROJECT_DIR)/bin/server
