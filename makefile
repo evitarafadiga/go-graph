@@ -14,6 +14,7 @@ build:
 	@yum upgrade
 	@wget https://go.dev/dl/go1.23.5.linux-amd64.tar.gz
 	@tar -xvf go1.23.5.linux-amd64.tar.gz
+	@rm -rf /usr/local/go
 	@mv go /usr/local
 	@export GOROOT=/usr/local/go
 	@export GOPATH=$HOME/Apps/app1
