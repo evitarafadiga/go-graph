@@ -10,11 +10,29 @@ import (
 
 	"github.com/evitarafadiga/go-graph/generated"
 	"github.com/evitarafadiga/go-graph/model"
+	"go.mongodb.org/mongo-driver/bson/primitive"
 )
+
+var collectionName = "task"
 
 // CreateTask is the resolver for the createTask field.
 func (r *mutationResolver) CreateTask(ctx context.Context, task model.TaskInput) (*model.Task, error) {
-	panic(fmt.Errorf("not implemented: CreateTask - createTask"))
+	collection :=  r.DB.Collection(collectionName)
+
+	newId := primitive.NewObjectID()
+
+	newTask := model.Task{
+		ID: newId.Hex(),
+		Name: task.Name,
+		Deleted: task.Deleted,
+	}
+
+	_, err := collection.InsertOne(ctx, newTask)
+	if err != nil {
+		return nil, err
+	}
+
+	return &newTask, nil
 }
 
 // UpdateTask is the resolver for the updateTask field.
