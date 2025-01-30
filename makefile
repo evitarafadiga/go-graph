@@ -2,8 +2,8 @@
 GO = go
 PROJECT_DIR = $(shell pwd)
 GQLGEN = github.com/99designs/gqlgen
-DB_URL = localhost:5432
-
+DB_URL = mongodb://root:pass@localhost:27017
+DB_NAME = go_graph
 # Env
 
 PORT = 8080
