@@ -17,8 +17,8 @@ build:
 	@rm -rf /usr/local/go
 	@mv go /usr/local
 	@export GOROOT=/usr/local/go
-	@export GOPATH=$HOME/Apps/go-graph
-	@export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
+	@export GOPATH=$$HOME/Apps/go-graph
+	@export PATH=$$GOPATH/bin:$$GOROOT/bin:$$PATH
 	@(GO) version
 	@echo "==>⬇️ (2/4) GO installed."
 	@echo "==>🔨 (3/4) Building server..."
