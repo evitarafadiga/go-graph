@@ -19,7 +19,7 @@ build:
 	@export GOROOT=/usr/local/go
 	@export GOPATH=$$HOME/Apps/go-graph
 	@export PATH=$$GOPATH/bin:$$GOROOT/bin:$$PATH
-	@(GO) version
+	@$(GO) version
 	@echo "==>⬇️ (2/4) GO installed."
 	@echo "==>🔨 (3/4) Building server..."
 	@$(GO) build -o $(PROJECT_DIR)/bin/server $(PROJECT_DIR)/server.go
