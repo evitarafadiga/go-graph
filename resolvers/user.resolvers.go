@@ -72,7 +72,7 @@ func (r *mutationResolver) DeleteUser(ctx context.Context, id string) (bool, err
 
 	objectID, err := primitive.ObjectIDFromHex(id)
 	if err != nil {
-		return true, err
+		return false, err
 	}
 
 	filter := bson.M{"_id": objectID}

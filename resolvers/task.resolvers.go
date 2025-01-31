@@ -73,7 +73,7 @@ func (r *mutationResolver) DeleteTask(ctx context.Context, id string) (bool, err
 
 	objectID, err := primitive.ObjectIDFromHex(id)
 	if err != nil {
-		return true, err
+		return false, err
 	}
 
 	filter := bson.M{"_id": objectID}
