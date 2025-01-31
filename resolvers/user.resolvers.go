@@ -44,7 +44,7 @@ func (r *mutationResolver) UpdateUser(ctx context.Context, id string, user *mode
 		return nil, err
 	}
 
-	filter := bson.M{"_id": objectID}
+	filter := bson.M{"id": objectID}
 	update := bson.M{
 		"$set": bson.M{
 			"username": user.Username,
@@ -75,7 +75,7 @@ func (r *mutationResolver) DeleteUser(ctx context.Context, id string) (bool, err
 		return true, err
 	}
 
-	filter := bson.M{"_id": objectID}
+	filter := bson.M{"id": objectID}
 
 	_, err = collection.DeleteOne(ctx, filter)
 	return true, err

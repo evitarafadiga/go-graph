@@ -45,7 +45,7 @@ func (r *mutationResolver) UpdateTask(ctx context.Context, id string, task *mode
 		return nil, err
 	}
 
-	filter := bson.M{"_id": objectID}
+	filter := bson.M{"id": objectID}
 	update := bson.M{
 		"$set": bson.M{
 			"name": task.Name,
@@ -76,7 +76,7 @@ func (r *mutationResolver) DeleteTask(ctx context.Context, id string) (bool, err
 		return true, err
 	}
 
-	filter := bson.M{"_id": objectID}
+	filter := bson.M{"id": objectID}
 
 	_, err = collection.DeleteOne(ctx, filter)
 	return true, err
