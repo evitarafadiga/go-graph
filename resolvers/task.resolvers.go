@@ -14,10 +14,11 @@ import (
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
-var taskCollectionName = "task"
-
 // CreateTask is the resolver for the createTask field.
 func (r *mutationResolver) CreateTask(ctx context.Context, task model.TaskInput) (*model.Task, error) {
+	
+	var taskCollectionName = "task"
+	
 	collection := r.DB.Collection(taskCollectionName)
 
 	newId := primitive.NewObjectID()

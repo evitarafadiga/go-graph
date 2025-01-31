@@ -13,10 +13,11 @@ import (
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
-var userCollectionName = "user"
-
 // CreateUser is the resolver for the createUser field.
 func (r *mutationResolver) CreateUser(ctx context.Context, user model.UserInput) (*model.User, error) {
+	
+	var userCollectionName = "user"
+
 	collection := r.DB.Collection(userCollectionName)
 
 	newId := primitive.NewObjectID()
