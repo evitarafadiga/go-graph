@@ -58,7 +58,7 @@ func (r *mutationResolver) UpdateUser(ctx context.Context, id string, user *mode
 	}
 
 	var updatedUser model.User
-	err = result.Decode(&user)
+	err = result.Decode(&updatedUser)
 	if err != nil {
 		return nil, err
 	}

@@ -59,7 +59,7 @@ func (r *mutationResolver) UpdateTask(ctx context.Context, id string, task *mode
 	}
 
 	var updatedTask model.Task
-	err = result.Decode(&task)
+	err = result.Decode(&updatedTask)
 	if err != nil {
 		return nil, err
 	}
