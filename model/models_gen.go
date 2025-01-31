@@ -18,3 +18,14 @@ type TaskInput struct {
 	Name    string `json:"name"`
 	Deleted bool   `json:"deleted"`
 }
+
+type User struct {
+	ID       string `json:"id"`
+	Username string `json:"username"`
+	Password string `json:"password"`
+}
+
+type UserInput struct {
+	Username string `json:"username"`
+	Password string `json:"password"`
+}
